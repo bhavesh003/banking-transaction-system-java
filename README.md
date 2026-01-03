@@ -1,20 +1,11 @@
-# Enterprise Banking & Transaction Management System
+# Banking Transaction System
 
-A comprehensive, production-ready Java-based banking system that handles customer accounts, transactions, and banking operations with enterprise-grade security and reliability.
+A comprehensive Java-based banking system built with MySQL that handles customer accounts, transactions, and banking operations with enterprise-grade security and reliability.
 
-## 🏆 Project Highlights
-
-**This is a RESUME-READY, enterprise-grade banking system** that demonstrates:
-- **Clean Architecture** with proper separation of concerns
-- **ACID Transaction Management** with commit/rollback mechanisms
-- **Concurrent Transaction Safety** with deadlock prevention
-- **Production-Ready Error Handling** and validation
-- **Database Design Excellence** with proper normalization and indexing
-
-## ✨ Key Features
+## 🚀 Features
 
 ### Core Banking Operations
-- **Customer Management**: Create, update, and manage customer profiles with validation
+- **Customer Management**: Create, update, and manage customer profiles
 - **Multi-Account Support**: Savings, Checking, and Business accounts with specific business rules
 - **Secure Transactions**: Deposits, withdrawals, and transfers with ACID compliance
 - **Transaction History**: Complete audit trail with real-time balance tracking
@@ -22,61 +13,46 @@ A comprehensive, production-ready Java-based banking system that handles custome
 
 ### Technical Excellence
 - **Thread-Safe Operations**: Handles concurrent transactions safely
-- **Deadlock Prevention**: Ordered locking mechanism prevents database deadlocks
+- **ACID Transaction Management**: Database transactions with commit/rollback
 - **Connection Pooling**: Efficient database connection management
 - **Input Validation**: Comprehensive validation with meaningful error messages
 - **SQL Injection Protection**: All queries use PreparedStatements
-- **Optimistic Locking**: Prevents race conditions in balance updates
 
-## 🏗️ Architecture Overview
+## 🏗️ Architecture
 
 ```
-banking-transaction-system-java/
-├── database/
-│   └── schema.sql                    # Complete MySQL schema with sample data
-├── src/main/java/com/banking/
-│   ├── dao/                         # Data Access Layer
-│   │   ├── CustomerDAO.java         # Customer data operations interface
-│   │   ├── AccountDAO.java          # Account data operations interface
-│   │   ├── TransactionDAO.java      # Transaction data operations interface
-│   │   └── impl/                    # DAO implementations
-│   │       ├── CustomerDAOImpl.java
-│   │       ├── AccountDAOImpl.java
-│   │       └── TransactionDAOImpl.java
-│   ├── exception/                   # Custom Exception Handling
-│   │   ├── AccountNotFoundException.java
-│   │   ├── BankingException.java
-│   │   └── InsufficientFundsException.java
-│   ├── model/                       # Domain Models
-│   │   ├── Account.java             # Abstract account base class
-│   │   ├── SavingsAccount.java      # Savings account with interest
-│   │   ├── CheckingAccount.java     # Checking account with overdraft
-│   │   ├── BusinessAccount.java     # Business account with higher limits
-│   │   ├── Customer.java            # Customer entity
-│   │   ├── Transaction.java         # Transaction entity
-│   │   └── [Enums for type safety]
-│   ├── service/                     # Business Logic Layer
-│   │   ├── CustomerService.java     # Customer business operations
-│   │   ├── AccountService.java      # Account business operations
-│   │   ├── TransactionService.java  # Transaction business operations
-│   │   └── TransactionManager.java  # ACID transaction management
-│   ├── util/                        # Utilities
-│   │   ├── DBConnection.java        # Database connection management
-│   │   ├── DBConstants.java         # Configuration constants
-│   │   └── TransactionSafetyDemo.java # Concurrent safety demonstrations
-│   └── Main.java                    # CLI Application
-├── SETUP_GUIDE.md                   # Detailed setup instructions
-└── README.md                        # This file
+src/main/java/com/banking/
+├── dao/                         # Data Access Layer
+│   ├── CustomerDAO.java         # Customer data operations interface
+│   ├── AccountDAO.java          # Account data operations interface
+│   ├── TransactionDAO.java      # Transaction data operations interface
+│   └── impl/                    # DAO implementations
+├── exception/                   # Custom Exception Handling
+├── model/                       # Domain Models
+│   ├── Account.java             # Abstract account base class
+│   ├── SavingsAccount.java      # Savings account with interest
+│   ├── CheckingAccount.java     # Checking account with overdraft
+│   ├── BusinessAccount.java     # Business account with higher limits
+│   ├── Customer.java            # Customer entity
+│   └── Transaction.java         # Transaction entity
+├── service/                     # Business Logic Layer
+│   ├── CustomerService.java     # Customer business operations
+│   ├── AccountService.java      # Account business operations
+│   ├── TransactionService.java  # Transaction business operations
+│   └── TransactionManager.java  # ACID transaction management
+├── util/                        # Utilities
+│   ├── DBConnection.java        # Database connection management
+│   └── DBConstants.java         # Configuration constants
+└── TestApp.java                 # Test application
 ```
 
 ## 🔧 Technology Stack
 
-- **Language**: Java 8+ (Core Java only, no frameworks)
+- **Language**: Java 8+
 - **Database**: MySQL 8.0+ with JDBC
 - **Architecture**: Clean Architecture with DAO pattern
 - **Transaction Management**: JDBC-based ACID transactions
 - **Concurrency**: ReentrantLocks with deadlock prevention
-- **Security**: PreparedStatements, input validation, SQL injection protection
 
 ## 🚀 Quick Start
 
@@ -85,24 +61,31 @@ banking-transaction-system-java/
 - MySQL 8.0+
 - MySQL JDBC Driver (included in `lib/` folder)
 
-### Setup (5 minutes)
-1. **Clone and setup database:**
+### Setup
+1. **Clone the repository:**
    ```bash
-   git clone <repository>
+   git clone https://github.com/yourusername/banking-transaction-system-java.git
    cd banking-transaction-system-java
+   ```
+
+2. **Setup database:**
+   ```bash
    mysql -u root -p -e "CREATE DATABASE banking_system;"
    mysql -u root -p banking_system < database/schema.sql
    ```
 
-2. **Configure database connection:**
+3. **Configure database connection:**
    ```java
    // Update src/main/java/com/banking/util/DBConstants.java
    public static final String DB_USERNAME = "your_username";
    public static final String DB_PASSWORD = "your_password";
    ```
 
-3. **Compile and run:**
+4. **Compile and run:**
    ```bash
+   # Create bin directory
+   mkdir bin
+   
    # Compile
    javac -cp "lib/mysql-connector-j-9.5.0.jar" -d bin src/main/java/com/banking/TestApp.java src/main/java/com/banking/model/*.java src/main/java/com/banking/util/*.java
    
@@ -110,176 +93,90 @@ banking-transaction-system-java/
    java -cp "bin;lib/mysql-connector-j-9.5.0.jar" com.banking.TestApp
    ```
 
-**See [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed instructions.**
-
 ## 💡 Usage Examples
 
 ### Customer Management
-```
-👤 Create customers with validation
-📧 Email uniqueness enforcement
-🔍 Search and filter capabilities
-📊 Customer statistics and reporting
+```java
+// Create a new customer
+Customer customer = new Customer("CUST001", "John", "Doe", 
+    "john@email.com", "+1-555-0101", "123 Main St", 
+    LocalDate.of(1985, 6, 15), "123-45-6789");
 ```
 
 ### Account Operations
-```
-💳 Multiple account types (Savings, Checking, Business)
-💰 Balance management with overdraft protection
-🔒 Account status management
-📈 Interest calculation for savings accounts
-```
-
-### Secure Transactions
-```
-💸 Deposits with real-time balance updates
-💳 Withdrawals with insufficient funds protection
-🔄 Transfers with ACID compliance
-📋 Complete transaction history and statements
+```java
+// Create different account types
+SavingsAccount savings = new SavingsAccount("SAV001", "CUST001", new BigDecimal("1000.00"));
+CheckingAccount checking = new CheckingAccount("CHK001", "CUST001", new BigDecimal("500.00"));
+BusinessAccount business = new BusinessAccount("BUS001", "CUST001", 
+    new BigDecimal("5000.00"), "My Business LLC", "12-3456789");
 ```
 
-## 🛡️ Security & Safety Features
+### Transaction Processing
+```java
+// Create transactions
+Transaction deposit = new Transaction("TXN001", null, "SAV001", 
+    TransactionType.DEPOSIT, new BigDecimal("200.00"), "Deposit");
+    
+Transaction transfer = new Transaction("TXN002", "SAV001", "CHK001", 
+    TransactionType.TRANSFER, new BigDecimal("100.00"), "Transfer");
+```
 
-### Transaction Safety
-- **ACID Compliance**: All transactions are atomic, consistent, isolated, and durable
-- **Deadlock Prevention**: Ordered locking prevents circular wait conditions
-- **Race Condition Protection**: Optimistic locking prevents concurrent balance corruption
-- **Rollback on Failure**: Automatic rollback ensures data integrity
+## 🛡️ Security Features
 
-### Data Security
 - **SQL Injection Protection**: All queries use PreparedStatements
 - **Input Validation**: Comprehensive validation with sanitization
-- **Access Control**: Account status validation for all operations
-- **Audit Trail**: Complete transaction logging with timestamps
-
-### Concurrent Operations
-```java
-// Example: Safe concurrent transfers
-TransactionManager manager = new TransactionManager();
-
-// Thread 1: A -> B transfer
-manager.executeTransfer("ACC001", "ACC002", new BigDecimal("100.00"), "Transfer 1");
-
-// Thread 2: B -> A transfer (potential deadlock scenario)
-manager.executeTransfer("ACC002", "ACC001", new BigDecimal("50.00"), "Transfer 2");
-
-// Result: Both complete safely without deadlock
-```
+- **ACID Transactions**: Ensures data consistency and integrity
+- **Connection Security**: Proper connection management and cleanup
 
 ## 📊 Database Design
 
-### Optimized Schema
-- **Proper Normalization**: 3NF compliance with referential integrity
-- **Strategic Indexing**: Performance-optimized queries
-- **Constraint Enforcement**: Business rules enforced at database level
-- **Audit Timestamps**: Created/updated tracking for all entities
+The system uses a normalized MySQL database with three main tables:
+- **customers**: Customer information and profiles
+- **accounts**: Account details with type-specific fields
+- **transactions**: Transaction records with full audit trail
 
-### Sample Data Included
-- 3 test customers with different profiles
-- 4 accounts across all types (Savings, Checking, Business)
-- Transaction history for immediate testing
+Key features:
+- Foreign key constraints for referential integrity
+- Check constraints for business rule enforcement
+- Strategic indexing for query performance
+- Proper data types for financial accuracy
 
-## 🎯 Business Rules Implemented
+## 🎯 Business Rules
 
 ### Account Types
-- **Savings**: 2.5% interest, $100 minimum balance, $5,000 withdrawal limit
-- **Checking**: Overdraft protection, $50 minimum balance, $10,000 withdrawal limit  
-- **Business**: Higher limits, business license validation, $1,000 minimum balance
+- **Savings**: 2.5% interest rate, $100 minimum balance
+- **Checking**: Overdraft protection, $50 minimum balance
+- **Business**: Higher transaction limits, business license required
 
 ### Transaction Rules
-- **Deposits**: Positive amounts only, immediate balance update
-- **Withdrawals**: Sufficient funds validation, respect account limits
-- **Transfers**: Atomic operations, both accounts updated or neither
-
-### Validation Rules
-- **Customers**: 18+ years old, valid email format, unique email addresses
-- **Accounts**: Minimum deposit requirements, valid customer association
-- **Transactions**: Amount limits, account status validation, business rule compliance
-
-## 🏅 Why This Project Stands Out
-
-### Resume-Ready Features
-1. **Enterprise Architecture**: Demonstrates understanding of layered architecture
-2. **Database Expertise**: Shows advanced SQL skills and database design
-3. **Concurrency Handling**: Proves ability to handle complex threading scenarios
-4. **Error Handling**: Comprehensive exception management and recovery
-5. **Code Quality**: Clean code principles with proper documentation
-
-### Real-World Applicability
-- **Banking Industry Standards**: Implements actual banking business rules
-- **Production Scalability**: Connection pooling and efficient resource management
-- **Security Best Practices**: SQL injection protection and input validation
-- **Audit Compliance**: Complete transaction logging for regulatory requirements
-
-### Technical Depth
-- **ACID Transaction Management**: Database transaction handling
-- **Deadlock Prevention**: Advanced concurrency control
-- **Connection Pooling**: Enterprise-grade resource management
-- **Clean Architecture**: Proper separation of concerns
-
-## 🧪 Testing & Validation
-
-### Concurrent Safety Testing
-```bash
-# Run the safety demonstration
-java -cp "bin:lib/mysql-connector-java-8.0.x.jar" com.banking.util.TransactionSafetyDemo
-```
-
-### Features Tested
-- ✅ Concurrent transaction safety
-- ✅ Deadlock prevention
-- ✅ Rollback on failure
-- ✅ Balance consistency
-- ✅ Data integrity
-
-## 📈 Performance Features
-
-- **Connection Pooling**: Configurable pool size (default: 5-20 connections)
-- **Prepared Statements**: Query optimization and security
-- **Indexed Queries**: Strategic database indexing for fast lookups
-- **Minimal Locking**: Account-level locks minimize contention
-- **Efficient Resource Management**: Proper cleanup prevents memory leaks
+- All monetary values use BigDecimal for precision
+- Transactions are atomic (all-or-nothing)
+- Complete audit trail for all operations
+- Real-time balance updates
 
 ## 🔮 Future Enhancements
 
-- REST API layer for web/mobile integration
-- JWT-based authentication and authorization
-- Microservices architecture with Spring Boot
-- Redis caching for improved performance
-- Kafka for event-driven architecture
-- Docker containerization
+- REST API implementation
+- Web-based user interface
+- Mobile application support
+- Advanced reporting features
+- Integration with external payment systems
 
 ## 📝 Documentation
 
-- **[SETUP_GUIDE.md](SETUP_GUIDE.md)**: Complete setup instructions
-- **[INTERVIEW_GUIDE.md](INTERVIEW_GUIDE.md)**: Technical interview preparation
+- **[SETUP_GUIDE.md](SETUP_GUIDE.md)**: Detailed setup instructions
 - **[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)**: Production deployment guide
-- **[CURRENT_STATUS.md](CURRENT_STATUS.md)**: Project status and next steps
-- **Inline Documentation**: Comprehensive JavaDoc comments
-- **Database Schema**: Fully documented with comments
+- **Database Schema**: Complete SQL schema with sample data
 
 ## 🤝 Contributing
 
-This project demonstrates enterprise Java development skills suitable for:
-- Senior Backend Engineer positions
-- Java Developer roles
-- Banking/Financial software development
-- System Architecture positions
+Feel free to fork this project and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
-## 📊 Project Stats
+## 📄 License
 
-![Java](https://img.shields.io/badge/Java-8+-orange)
-![MySQL](https://img.shields.io/badge/MySQL-8.0+-blue)
-![JDBC](https://img.shields.io/badge/JDBC-Native-green)
-![Architecture](https://img.shields.io/badge/Architecture-Clean-brightgreen)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success)
-
-**Lines of Code**: ~3,000+ lines  
-**Test Coverage**: Model layer 100% functional  
-**Database Tables**: 3 (normalized schema)  
-**Design Patterns**: 5+ implemented  
-**Concurrent Safety**: ✅ Thread-safe operations  
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**This Banking Transaction System showcases production-ready Java development with enterprise-grade architecture, security, and reliability. Perfect for demonstrating advanced backend development skills in interviews and portfolio presentations.**
+**Built with ❤️ using Java and MySQL**

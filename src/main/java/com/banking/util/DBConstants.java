@@ -6,7 +6,7 @@ package com.banking.util;
  * This class contains all database-related configuration parameters including
  * connection details, SQL queries, and database settings.
  * 
- * @author Banking System Team
+ * @author Bhavesh
  * @version 1.0
  */
 public final class DBConstants {
@@ -27,7 +27,7 @@ public final class DBConstants {
     public static final String DB_USERNAME = "root";
     
     /** Database password - UPDATE THIS WITH YOUR MYSQL PASSWORD */
-    public static final String DB_PASSWORD = "Bhavesh@3402";
+    public static final String DB_PASSWORD = "your_password_here";
     
     /** MySQL JDBC driver class name */
     public static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
