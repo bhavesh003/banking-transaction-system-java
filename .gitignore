@@ -1,0 +1,44 @@
+# Compiled class files
+*.class
+bin/
+target/
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.eclipse/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database credentials (for security)
+# Note: In real projects, use environment variables
+# src/main/java/com/banking/util/DBConstants.java
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# MySQL connector (download separately)
+lib/mysql-connector-*.jar
+lib/mysql-connector-*.tar.gz
